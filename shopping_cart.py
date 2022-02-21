@@ -26,20 +26,20 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-# def to_usd(my_price):
-    #"""
-   # Converts a numeric value to usd-formatted string, for printing and display purposes.
+def to_usd(my_price):
+    """
+   Converts a numeric value to usd-formatted string, for printing and display purposes.
 
-   # Param: my_price (int or float) like 4000.444444
+   Param: my_price (int or float) like 4000.444444
 
-    #Example: to_usd(4000.444444)
+    Example: to_usd(4000.444444)
 
-   # Returns: $4,000.44
-    #"""
-    # return f"${my_price:,.2f}" #> $12,000.71
+   Returns: $4,000.44
+    """
+    return f"${my_price:,.2f}" #> $12,000.71
 
 
-total_price = 0
+subtotal_price = 0
 product_ids = []
 tday = datetime.datetime.now()
 tday2 = tday.replace(microsecond = 0)
@@ -49,8 +49,7 @@ product_id = ""
 while True: 
     # ASK FOR USER INPUT 
     product_id = input("Please input a product identifier, or 'DONE' if there are no more items: ")
-    print(product_id)
-    if product_id == "DONE":
+    if product_id == "DONE" or product_id == "done":
         break
     elif int(product_id) > len(products) or int(product_id) <=0 :
        print ("INVAlID ID : PLEASE TRY AGAIN")
@@ -79,31 +78,31 @@ print("SELECTED PRODUCTS:")
 for product_id in product_ids: 
     matching_products = [x for x in products if str(x["id"]) == str(product_id)]
     matching_product = matching_products[0]
-    total_price = total_price + matching_product["price"]
+    subtotal_price = subtotal_price + matching_product["price"]
 
-   # print("...", matching_product["name"], + "(" + str(to_usd(matching_product["price"]))+ ")")
+print("...", matching_product["name"], + "(" + str(to_usd(matching_product["price"]))+ ")")
 
 
-print("--------------")
 
-# The total cost of all shopping cart items (i.e. the "subtotal"), formatted as US dollars and cents (e.g. $19.47), calculated as the sum of their prices
-# print("SUBTOTAL: " + str(to_usd(total_price)))
-
-# The amount of tax owed (e.g. $1.70), calculated by multiplying the total cost by a New York City sales tax rate of 8.75%
+###### subtotal, tax, total 
 
 import os
 from dotenv import load_dotenv
 
-
 load_dotenv()
+
 tax_rate = os.getenv("TAX RATE", default = 0.0875)
-# print("TAX: " + (str(to_usd(total_price*tax_rate))))
+tax = subtotal_price * float(tax_rate)
+total_price = subtotal_price + tax
 
-# The total amount owed, formatted as US dollars and cents (e.g. $21.17), calculated by adding together the amount of tax owed plus the total cost of all shopping cart items
-# tax_total = (str(to_usd(total_price+total_price*tax_rate)))
-print("TOTAL: " + tax_total)
 
+####### END OF RECEIPT 
 print("--------------")
+print("SUBTOTAL: " + str(to_usd(subtotal_price)))
+print("TAX: " + (str(to_usd(tax))))
+print ("TOTAL:", to_usd(total_price))
+print("--------------")
+
 
 # A friendly message thanking the customer and/or encouraging the customer to shop again
 print("THANKS, SEE YOU AGAIN SOON!")
