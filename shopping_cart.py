@@ -1,7 +1,10 @@
 # shopping_cart.py
 
+from ast import If
 import datetime
 from itertools import product
+from pickle import TRUE
+
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -104,3 +107,63 @@ print("--------------")
 print("THANKS, SEE YOU AGAIN SOON!")
 print("--------------")
 
+
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
+#### EMAIL 
+
+while TRUE:
+    user_receipt = input("Would you like to receive your receipt by email? [y/n]?")
+    if user_receipt == "n" or product_id == "no" or product_id == "NO":
+        break
+    elif user_receipt == "y" or product_id == "yes" or product_id == "YES":
+        load_dotenv()
+
+        SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
+        SENDGRID_TEMPLATE_ID = os.getenv("SENDGRID_TEMPLATE_ID", default="OOPS, please set env var called 'SENDGRID_TEMPLATE_ID'")
+        SENDER_ADDRESS = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var called 'SENDER_ADDRESS'")
+
+        # this must match the test data structure
+        # template_data = {
+        '''
+            print ("Total Price:", to_usd(total_price)),
+            print ("Receipt sent at:", tday2),
+            print ("Products:"),
+            print ("...", matching_product["name"], "(" + str(to_usd(matching_product["price"]))+ ")")
+        }
+        '''
+
+        template_data = {
+            "total": "$14.95",
+            "human_friendly_timestamp": "June 1st, 2019 10:00 AM",
+            "products":[
+            {"id":1, "name": "Product 1"},
+            {"id":2, "name": "Product 2"},
+            {"id":3, "name": "Product 3"},
+            {"id":2, "name": "Product 2"},
+            {"id":1, "name": "Product 1"}
+            ]
+        }
+
+        client = SendGridAPIClient(SENDGRID_API_KEY)
+        print("CLIENT:", type(client))
+
+        message = Mail(from_email=SENDER_ADDRESS, to_emails=SENDER_ADDRESS)
+        message.template_id = SENDGRID_TEMPLATE_ID
+        message.dynamic_template_data = template_data
+        print("MESSAGE:", type(message))
+
+        try:
+            response = client.send(message)
+            print("RESPONSE:", type(response))
+            print(response.status_code)
+            print(response.body)
+            print(response.headers)
+
+        except Exception as err:
+            print(type(err))
+            print(err)
+    else:
+        print ("INVAlID ID : PLEASE TRY AGAIN")
