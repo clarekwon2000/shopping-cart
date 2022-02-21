@@ -2,7 +2,6 @@
 
 import datetime
 from itertools import product
-from operator import itemgetter
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -27,17 +26,17 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-def to_usd(my_price):
-    """
-    Converts a numeric value to usd-formatted string, for printing and display purposes.
+# def to_usd(my_price):
+    #"""
+   # Converts a numeric value to usd-formatted string, for printing and display purposes.
 
-    Param: my_price (int or float) like 4000.444444
+   # Param: my_price (int or float) like 4000.444444
 
-    Example: to_usd(4000.444444)
+    #Example: to_usd(4000.444444)
 
-    Returns: $4,000.44
-    """
-    return f"${my_price:,.2f}" #> $12,000.71
+   # Returns: $4,000.44
+    #"""
+    # return f"${my_price:,.2f}" #> $12,000.71
 
 
 total_price = 0
@@ -45,53 +44,70 @@ product_ids = []
 tday = datetime.datetime.now()
 tday2 = tday.replace(microsecond = 0)
 
+product_id = ""
+
 while True: 
     # ASK FOR USER INPUT 
     product_id = input("Please input a product identifier, or 'DONE' if there are no more items: ")
+    print(product_id)
     if product_id == "DONE":
         break
+    elif int(product_id) > len(products) or int(product_id) <=0 :
+       print ("INVAlID ID : PLEASE TRY AGAIN")
     else:
         product_ids.append(product_id)
-   
+
+
 # INFO DISPLAY / OUTPUT 
 
-# print(product_ids)
-    for product_id in product_ids: 
-        matching_products = [x for x in products if str(x["id"]) == str(product_id)]
-        matching_product = matching_products[0]
-        total_price = total_price + matching_product["price"]
-
-
 print("--------------")
-print("GEORGETOWN GREENS GROCERY")
-print("www.georgetown-greens-grocery.com")
-print("--------------")
-
-print("CHECKOUT AT:", tday2)
-print("--------------")
-
-print("SELECTED PRODUCTS:") 
-# print("...", matching_product["name"] + " " + str(to_usd(matching_product["price"]))))))
-
-print("--------------")
-print("SUBTOTAL: " + str(to_usd(total_price)))
-print("TAX: " + str(to_usd(total_price)))
-print("TOTAL: " + str(to_usd(total_price)))
-
-print("--------------")
-print("THANKS, SEE YOU AGAIN SOON!")
-print("--------------")
-
-
-
-
 
 # A grocery store name of your choice
+print("GEORGETOWN GREENS GROCERY")
 # A grocery store phone number and/or website URL and/or address of choice
-# The date and time of the beginning of the checkout process, formatted in a human-friendly way (e.g. 2020-02-07 03:54 PM)
+print("Call us at (202)-123-4567 / www.georgetown-greens-grocery.com")
+
+print("--------------")
+
+# The date and time of the beginning of the checkout process, formatted in a human-friendly way
+print("CHECKOUT AT:", tday2)
+
+print("--------------")
+
 # The name and price of each shopping cart item, price being formatted as US dollars and cents (e.g. $3.50, etc.)
+print("SELECTED PRODUCTS:") 
+for product_id in product_ids: 
+    matching_products = [x for x in products if str(x["id"]) == str(product_id)]
+    matching_product = matching_products[0]
+    total_price = total_price + matching_product["price"]
+
+   # print("...", matching_product["name"], + "(" + str(to_usd(matching_product["price"]))+ ")")
+
+
+print("--------------")
+
 # The total cost of all shopping cart items (i.e. the "subtotal"), formatted as US dollars and cents (e.g. $19.47), calculated as the sum of their prices
-# The amount of tax owed (e.g. $1.70), calculated by multiplying the total cost by a New York City sales tax rate of 8.75% (for the purposes of this project, groceries are not exempt from sales tax)
+# print("SUBTOTAL: " + str(to_usd(total_price)))
+
+# The amount of tax owed (e.g. $1.70), calculated by multiplying the total cost by a New York City sales tax rate of 8.75%
+
+import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
+tax_rate = os.getenv("TAX RATE", default = 0.0875)
+# print("TAX: " + (str(to_usd(total_price*tax_rate))))
+
 # The total amount owed, formatted as US dollars and cents (e.g. $21.17), calculated by adding together the amount of tax owed plus the total cost of all shopping cart items
+# tax_total = (str(to_usd(total_price+total_price*tax_rate)))
+print("TOTAL: " + tax_total)
+
+print("--------------")
+
 # A friendly message thanking the customer and/or encouraging the customer to shop again
+print("THANKS, SEE YOU AGAIN SOON!")
+
+print("--------------")
+
 
