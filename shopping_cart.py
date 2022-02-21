@@ -79,12 +79,9 @@ for product_id in product_ids:
     matching_products = [x for x in products if str(x["id"]) == str(product_id)]
     matching_product = matching_products[0]
     subtotal_price = subtotal_price + matching_product["price"]
+    print("...", matching_product["name"], "(" + str(to_usd(matching_product["price"]))+ ")")
 
-print("...", matching_product["name"], + "(" + str(to_usd(matching_product["price"]))+ ")")
-
-
-
-###### subtotal, tax, total 
+# subtotal, tax, total 
 
 import os
 from dotenv import load_dotenv
@@ -95,8 +92,7 @@ tax_rate = os.getenv("TAX RATE", default = 0.0875)
 tax = subtotal_price * float(tax_rate)
 total_price = subtotal_price + tax
 
-
-####### END OF RECEIPT 
+# END OF RECEIPT 
 print("--------------")
 print("SUBTOTAL: " + str(to_usd(subtotal_price)))
 print("TAX: " + (str(to_usd(tax))))
@@ -106,7 +102,5 @@ print("--------------")
 
 # A friendly message thanking the customer and/or encouraging the customer to shop again
 print("THANKS, SEE YOU AGAIN SOON!")
-
 print("--------------")
-
 
