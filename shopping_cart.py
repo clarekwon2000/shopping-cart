@@ -1,5 +1,9 @@
 # shopping_cart.py
 
+import datetime
+from itertools import product
+from operator import itemgetter
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -23,7 +27,6 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes.
@@ -36,51 +39,51 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
+
 total_price = 0
+product_ids = []
+tday = datetime.datetime.now()
+tday2 = tday.replace(microsecond = 0)
 
 while True: 
-
     # ASK FOR USER INPUT 
-
     product_id = input("Please input a product identifier, or 'DONE' if there are no more items: ")
-    # print(product_id) #> 9
-    # print(type(product_id))
-
     if product_id == "DONE":
         break
     else:
-        # LOOK UP CORRESPONDING PRODUCTS 
+        product_ids.append(product_id)
+   
+# INFO DISPLAY / OUTPUT 
 
-        # print product that has an id attribute equal to "9"
-
-        matching_products = []
-
-        for x in products: 
-            #if x == 3: 
-            #    ___.append(x)
-            # print(x)
-            # print(x["id"])
-            if str(x["id"]) == str(product_id): 
-                # this is a match 
-                matching_products.append(x)
-
-        # print(matching_products)
-        # print(type(matching_products))
-        # print(len(matching_products))
-
-        # print the name of the matching product
-
+# print(product_ids)
+    for product_id in product_ids: 
+        matching_products = [x for x in products if str(x["id"]) == str(product_id)]
         matching_product = matching_products[0]
         total_price = total_price + matching_product["price"]
 
-        print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"]))
 
-#
-# INFO DISPLAY / OUTPUT 
-# 
+print("--------------")
+print("GEORGETOWN GREENS GROCERY")
+print("www.georgetown-greens-grocery.com")
+print("--------------")
+
+print("CHECKOUT AT:", tday2)
+print("--------------")
+
+print("SELECTED PRODUCTS:") 
+# print("...", matching_product["name"] + " " + str(to_usd(matching_product["price"]))))))
+
+print("--------------")
+print("SUBTOTAL: " + str(to_usd(total_price)))
+print("TAX: " + str(to_usd(total_price)))
+print("TOTAL: " + str(to_usd(total_price)))
+
+print("--------------")
+print("THANKS, SEE YOU AGAIN SOON!")
+print("--------------")
 
 
-print("TOTAL PRICE: " + str(total_price))
+
 
 
 # A grocery store name of your choice
