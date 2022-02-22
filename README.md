@@ -134,6 +134,7 @@ Example "Test Data" which will populate the template:
     ]
 }
 ```
+
 Finally, configure the template's subject by clicking on "Settings" in the left sidebar. Choose an email subject like "Your Receipt from the Green Grocery Store". Then click "Save Template".
 
 After configuring and saving the email template, we should be able to use it to send an email:
@@ -181,9 +182,7 @@ except Exception as err:
     print(err)
 ```
 
-
-
-Follow this https://github.com/prof-rossetti/intro-to-python/blob/main/notes/python/packages/sendgrid.md link for further details.
+Follow this [Sendgrid Package] (https://github.com/prof-rossetti/intro-to-python/blob/main/notes/python/packages/sendgrid.md) for better details.
 
 # Google Sheet Bonus Assignment 
 
