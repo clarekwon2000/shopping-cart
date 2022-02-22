@@ -58,14 +58,6 @@ NOTE: The ".env" file must be ignored from version control, by using a correspon
 ```
 
 ```sh
-# Sendgrid Email Bonus Assignment 
-
-SENDGRID_API_KEY = "SENDGRID_API_KEY"
-SENDER_ADDRESS = "SENDER_EMAIL_ADDRESS" 
-SENDGRID_TEMPLATE_ID = d-4c7766bc749f40bbbeb2a80a25e6f980
-```
-
-```sh
 # Google Sheet Bonus Assignment 
 GOOGLE_SHEET_ID = "1ItN7Cc2Yn4K90cMIsxi2P045Gzw0y2JHB_EkV4mXXpI"
 SHEET_NAME = "Products-2021"
@@ -82,6 +74,30 @@ pip install sendgrid
 # optionally install a specific version:
 #pip install sendgrid==6.6.0
 ```
+
+First, sign up for a [a link]https://signup.sendgrid.com/ SendGrid account, then follow the instructions to complete your "Single Sender Verification", clicking the link in a confirmation email to verify your account. 
+
+
+Then create a SendGrid API Key with "full access" permissions. We'll want to store the API Key value in an environment variable called SENDGRID_API_KEY.
+Also set an environment variable called SENDER_ADDRESS to be the same email address as the single sender address you just associated with your SendGrid account.
+
+Use a ".env" file approach to manage these environment variables.
+
+```sh
+# this is the .env file 
+
+SENDGRID_API_KEY = "SENDGRID_API_KEY"
+SENDER_ADDRESS = "SENDER_EMAIL_ADDRESS" 
+SENDGRID_TEMPLATE_ID = d-4c7766bc749f40bbbeb2a80a25e6f980
+```
+
+## Email Templates
+
+Navigate to https://sendgrid.com/dynamic_templates and press the "Create Template" button on the top right. Give it a name like "example-receipt", and click "Save". At this time, you should see your template's unique identifier (e.g. "d-b902ae61c68f40dbbd1103187a9736f0"). Copy this value and store it in an environment variable called SENDGRID_TEMPLATE_ID.
+
+
+
+
 
 Follow this https://github.com/prof-rossetti/intro-to-python/blob/main/notes/python/packages/sendgrid.md link for further details.
 
