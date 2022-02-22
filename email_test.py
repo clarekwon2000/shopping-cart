@@ -11,7 +11,7 @@ SENDER_ADDRESS = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var c
 
 # this must match the test data structure
 
-} # or construct this dictionary dynamically based on the results of some other process :-D
+# or construct this dictionary dynamically based on the results of some other process :-D
 
 client = SendGridAPIClient(SENDGRID_API_KEY)
 print("CLIENT:", type(client))
