@@ -64,6 +64,15 @@ SENDGRID_TEMPLATE_ID = d-4c7766bc749f40bbbeb2a80a25e6f980
 GOOGLE_SHEET_ID = "1ItN7Cc2Yn4K90cMIsxi2P045Gzw0y2JHB_EkV4mXXpI"
 SHEET_NAME = "Products-2021"
 ```
+NOTE: The ".env" file must be ignored from version control, by using a corresponding entry in the ".gitignore" file.
+
+```sh
+# this is the ".gitignore" file...
+
+# ignore environment variables in the ".env" file:
+.env
+```
+
 
 ## Usage 
 
