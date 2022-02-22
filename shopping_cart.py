@@ -110,7 +110,6 @@ print("--------------")
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
-import json
 
 #### EMAIL 
 
@@ -134,6 +133,8 @@ while TRUE:
         
         print(matching_products)
         template_data = {
+            "subtotal_price":str(to_usd(subtotal_price)),
+            "tax":(str(to_usd(tax))),
             "total_price": to_usd(total_price),
             "tday2": tday2.strftime("%Y-%m-%d %H:%M:%S"), 
             "matching_products":
