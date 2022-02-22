@@ -43,7 +43,7 @@ You must set up a local file named ".env" outside the root directory of the proj
 ```sh
 # this is the .env file 
 
-You can configure your own tax rate via an environment variable called TAX_RATE.
+You can configure your own tax rate via an environment variable called `TAX_RATE`.
 # Tax Rate 
 TAX_RATE = 0.0875
 ```
@@ -59,8 +59,8 @@ NOTE: The ".env" file must be ignored from version control, by using a correspon
 
 ```sh
 # Google Sheet Bonus Assignment 
-GOOGLE_SHEET_ID = "1ItN7Cc2Yn4K90cMIsxi2P045Gzw0y2JHB_EkV4mXXpI"
-SHEET_NAME = "Products-2021"
+`GOOGLE_SHEET_ID` = "1ItN7Cc2Yn4K90cMIsxi2P045Gzw0y2JHB_EkV4mXXpI"
+`SHEET_NAME` = "Products-2021"
 ```
 
 
@@ -75,20 +75,20 @@ pip install sendgrid
 #pip install sendgrid==6.6.0
 ```
 
-First, sign up for a [a link]https://signup.sendgrid.com/ SendGrid account, then follow the instructions to complete your "Single Sender Verification", clicking the link in a confirmation email to verify your account. 
+First, sign up for a [SendGrid account](https://signup.sendgrid.com/), then follow the instructions to complete your "Single Sender Verification", clicking the link in a confirmation email to verify your account. 
 
 
-Then create a SendGrid API Key with "full access" permissions. We'll want to store the API Key value in an environment variable called SENDGRID_API_KEY.
-Also set an environment variable called SENDER_ADDRESS to be the same email address as the single sender address you just associated with your SendGrid account.
+Then [create a SendGrid API Key](https://app.sendgrid.com/settings/api_keys) with "full access" permissions. We'll want to store the API Key value in an environment variable called `SENDGRID_API_KEY`.
+Also set an environment variable called `SENDER_ADDRESS` to be the same email address as the single sender address you just associated with your SendGrid account.
 
 Use a ".env" file approach to manage these environment variables.
 
 ```sh
 # this is the .env file 
 
-SENDGRID_API_KEY = "SENDGRID_API_KEY"
-SENDER_ADDRESS = "SENDER_EMAIL_ADDRESS" 
-SENDGRID_TEMPLATE_ID = d-4c7766bc749f40bbbeb2a80a25e6f980
+`SENDGRID_API_KEY` = "SENDGRID_API_KEY"
+`SENDER_ADDRESS` = "SENDER_EMAIL_ADDRESS" 
+`SENDGRID_TEMPLATE_ID` = d-4c7766bc749f40bbbeb2a80a25e6f980
 ```
 
 ## Email Templates
