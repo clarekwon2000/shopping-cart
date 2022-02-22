@@ -93,9 +93,93 @@ Use a ".env" file approach to manage these environment variables.
 
 ## Email Templates
 
-Navigate to https://sendgrid.com/dynamic_templates and press the "Create Template" button on the top right. Give it a name like "example-receipt", and click "Save". At this time, you should see your template's unique identifier (e.g. "d-b902ae61c68f40dbbd1103187a9736f0"). Copy this value and store it in an environment variable called SENDGRID_TEMPLATE_ID.
+Navigate to https://sendgrid.com/dynamic_templates and press the "Create Template" button on the top right. Give it a name like "example-receipt", and click "Save". At this time, you should see your template's unique identifier (e.g. "d-b902ae61c68f40dbbd1103187a9736f0"). Copy this value and store it in an environment variable called `SENDGRID_TEMPLATE_ID`.
+
+Back in the SendGrid platform, click "Add Version" to create a new version of a "Blank Template" and select the "Code Editor" as your desired editing mechanism.
+
+At this point you should be able to paste the following HTML into the "Code" tab, and the corresponding example data in the "Test Data" tab, and save each after you're done editing them.
 
 
+Example "Code" template which will specify the structure of all emails:
+```sh
+<img src="https://www.shareicon.net/data/128x128/2016/05/04/759867_food_512x512.png">
+
+<h3>Hello. This is your receipt from Georgetown Green Grocery!</h3>
+<p>Date: {{tday2}}</p>
+
+<ul>
+{{#each matching_products}}
+    <li>You ordered: {{name}} ({{price}}) </li>
+{{/each}}
+
+</ul>
+
+<p>Sub-Total: {{subtotal_price}}</p>
+<p>Tax: {{tax}}</p>
+<p>Total: {{total_price}}</p>
+```
+
+Example "Test Data" which will populate the template:
+
+```sh
+{
+    "subtotal_price":"$14.95",
+    "tax":"$14.95",
+    "total_price": "$14.95",
+    "tday2": "2022-02-21 18:38:35",
+    "matching_products":[
+        {"name": "Product 1", "price": "$14.95"},
+        {"name": "Product 2", "price": "$14.95"},
+        {"name": "Product 3", "price": "$14.95"}
+    ]
+}
+```
+Finally, configure the template's subject by clicking on "Settings" in the left sidebar. Choose an email subject like "Your Receipt from the Green Grocery Store". Then click "Save Template".
+
+After configuring and saving the email template, we should be able to use it to send an email:
+
+```sh
+import os
+from dotenv import load_dotenv
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
+load_dotenv()
+
+SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
+SENDGRID_TEMPLATE_ID = os.getenv("SENDGRID_TEMPLATE_ID", default="OOPS, please set env var called 'SENDGRID_TEMPLATE_ID'")
+SENDER_ADDRESS = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var called 'SENDER_ADDRESS'")
+
+# this must match the test data structure
+
+template_data = {
+  "subtotal_price":str(to_usd(subtotal_price)),
+  "tax":(str(to_usd(tax))),
+  "total_price": to_usd(total_price),
+  "tday2": tday2.strftime("%Y-%m-%d %H:%M:%S"), 
+  "matching_products":
+      [{'name':matching_product['name'], 'price': to_usd(matching_product['price'])} for matching_product in matching_products]
+  } # or construct this dictionary dynamically based on the results of some other process :-D
+
+client = SendGridAPIClient(SENDGRID_API_KEY)
+print("CLIENT:", type(client))
+
+message = Mail(from_email=SENDER_ADDRESS, to_emails=SENDER_ADDRESS)
+message.template_id = SENDGRID_TEMPLATE_ID
+message.dynamic_template_data = template_data
+print("MESSAGE:", type(message))
+
+try:
+    response = client.send(message)
+    print("RESPONSE:", type(response))
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
+
+except Exception as err:
+    print(type(err))
+    print(err)
+```
 
 
 
