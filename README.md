@@ -29,9 +29,9 @@ You will need to write the following packages:
 ```sh
 # Basic Requirements 
 python-dotenv
+```
 
 Install the requirements: 
-
 ```sh
 pip install -r requirements.txt
 ```
@@ -46,16 +46,6 @@ You must set up a local file named ".env" outside the root directory of the proj
 You can configure your own tax rate via an environment variable called TAX_RATE.
 # Tax Rate 
 TAX_RATE = 0.0875
-
-# Sendgrid Email Bonus Assignment 
-
-SENDGRID_API_KEY = "SENDGRID_API_KEY"
-SENDER_ADDRESS = "SENDER_EMAIL_ADDRESS" 
-SENDGRID_TEMPLATE_ID = d-4c7766bc749f40bbbeb2a80a25e6f980
-
-# Google Sheet Bonus Assignment 
-GOOGLE_SHEET_ID = "1ItN7Cc2Yn4K90cMIsxi2P045Gzw0y2JHB_EkV4mXXpI"
-SHEET_NAME = "Products-2021"
 ```
 
 NOTE: The ".env" file must be ignored from version control, by using a corresponding entry in the ".gitignore" file.
@@ -67,6 +57,21 @@ NOTE: The ".env" file must be ignored from version control, by using a correspon
 .env
 ```
 
+```sh
+# Sendgrid Email Bonus Assignment 
+
+SENDGRID_API_KEY = "SENDGRID_API_KEY"
+SENDER_ADDRESS = "SENDER_EMAIL_ADDRESS" 
+SENDGRID_TEMPLATE_ID = d-4c7766bc749f40bbbeb2a80a25e6f980
+```
+
+```sh
+# Google Sheet Bonus Assignment 
+GOOGLE_SHEET_ID = "1ItN7Cc2Yn4K90cMIsxi2P045Gzw0y2JHB_EkV4mXXpI"
+SHEET_NAME = "Products-2021"
+```
+
+
 # Sending Receipts via Email 
 
 From within an active virtual environment, install the 'sendgrid' package:
@@ -77,6 +82,8 @@ pip install sendgrid
 # optionally install a specific version:
 #pip install sendgrid==6.6.0
 ```
+
+Follow this https://github.com/prof-rossetti/intro-to-python/blob/main/notes/python/packages/sendgrid.md link for further details.
 
 # Google Sheet Bonus Assignment 
 
