@@ -11,7 +11,7 @@ After creating the remote repo, use GitHub Desktop software or the command-line 
 After cloning the repo, navigate there from the command-line:
 
 ```sh
-cd ~/Desktop/shopping-cart 
+cd shopping-cart 
 ```
 
 # Environment Setup 
@@ -23,7 +23,8 @@ conda create -n shopping-env python=3.8
 conda activate shopping-env
 ```
 
-Use a "requirements.txt" file approach to install your packages. You will need to write the following packages: 
+Use a "requirements.txt" file approach to install your packages. 
+You will need to write the following packages: 
 
 ```sh
 # Basic Requirements 
