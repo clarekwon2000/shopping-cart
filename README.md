@@ -56,9 +56,10 @@ NOTE: The ".env" file must be ignored from version control, by using a correspon
 # ignore environment variables in the ".env" file:
 .env
 ```
+# For Access to Google Sheets
 
 ```sh
-# Google Sheet Bonus Assignment 
+# this is the .env file 
 `GOOGLE_SHEET_ID` = "1ItN7Cc2Yn4K90cMIsxi2P045Gzw0y2JHB_EkV4mXXpI"
 `SHEET_NAME` = "Products-2021"
 ```
@@ -184,11 +185,27 @@ except Exception as err:
 
 Follow this [Sendgrid Package](https://github.com/prof-rossetti/intro-to-python/blob/main/notes/python/packages/sendgrid.md) for better details.
 
-# Google Sheet Bonus Assignment 
+# Integrating with Google Sheets Database 
+
+First install the package (and a dependent auth-related package) using Pip, if necessary:
 
 ```sh
-json
-gspread oauth2client
+pip install gspread oauth2client
+```
+
+NOTE: you'll need to download a google credentials JSON file into your repo, but this file must ABSOLUTELY be ignored from version control. HINT: you can use an entry like the following in your ".gitignore" file:
+
+```sh
+# this is the .gitignore file
+
+# ignore environment variables:
+.env
+
+# ignore google credentials:
+# if you want to name your credentials "google-credentials.json":
+google-credentials.json 
+# otherwise use this catch-all to ignore all JSON files:
+*.json 
 ```
 
 ## Usage 
