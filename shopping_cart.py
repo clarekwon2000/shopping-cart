@@ -160,10 +160,7 @@ while TRUE:
         SENDER_ADDRESS = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var called 'SENDER_ADDRESS'")
 
         # this must match the test data structure
-
-        print(tday2.strftime("%Y-%m-%d %H:%M:%S"))
         
-        print(matching_products)
         template_data = {
             "subtotal_price":str(to_usd(subtotal_price)),
             "tax":(str(to_usd(tax))),

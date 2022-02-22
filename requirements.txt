@@ -1,8 +1,8 @@
 python-dotenv
 
-sendgrid
+sendgrid 
 
 json
 
-gspread oauth2client
+# gspread oauth2client
 
