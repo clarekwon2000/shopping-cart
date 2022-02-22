@@ -191,8 +191,11 @@ while TRUE:
         except Exception as err:
             print(type(err))
             print(err)
+        print("--------------")
+        print("THANKS, SEE YOU AGAIN SOON!")
+        print("--------------")
         break
     else:
         print ("INVAlID ID : PLEASE TRY AGAIN")
 
-        
+
