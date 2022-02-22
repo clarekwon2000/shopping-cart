@@ -216,3 +216,6 @@ Run the program:
 python shopping_cart.py 
 ```
 
+Received Help from https://www.youtube.com/watch?v=3BaGb-1cIr0&feature=youtu.be
+& the TA Sessions 
+
