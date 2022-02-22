@@ -10,21 +10,22 @@ After creating the remote repo, use GitHub Desktop software or the command-line 
 
 After cloning the repo, navigate there from the command-line:
 
-''' sh
+```sh
 cd ~/Desktop/shopping-cart 
-'''
+```
 
 # Environment Setup 
 
 You will need to activate a new Anaconda virtual environment.
-''' sh
+
+```sh
 conda create -n shopping-env python=3.8 
 conda activate shopping-env
-'''
+```
 
 Use a "requirements.txt" file approach to install your packages. You will need to write the following packages: 
 
-''' sh 
+```sh
 # Basic Requirements 
 python-dotenv
 
@@ -34,19 +35,19 @@ sendgrid
 # Google Sheet Bonus Assignment 
 json
 gspread oauth2client
-''' 
+```
 
 Install the requirements: 
 
-''' sh
+```sh
 pip install -r requirements.txt
-''' 
+```
 
 # Environmental Variables 
 
 You must set up a local file named ".env" outside the root directory of the project. You will be able to store the necessary environment variables in this file. The 
 
-''' sh
+```sh
 # this is the .env file 
 
 # Tax Rate 
@@ -61,15 +62,13 @@ SENDGRID_TEMPLATE_ID = d-4c7766bc749f40bbbeb2a80a25e6f980
 # Google Sheet Bonus Assignment 
 GOOGLE_SHEET_ID = "1ItN7Cc2Yn4K90cMIsxi2P045Gzw0y2JHB_EkV4mXXpI"
 SHEET_NAME = "Products-2021"
-'''
-
-
-
+```
 
 ## Usage 
 
 Run the program: 
 
-''' sh 
+```sh
 python shopping_cart.py 
-'''
+```
+
