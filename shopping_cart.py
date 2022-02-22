@@ -78,9 +78,12 @@ print("--------------")
 
 # The name and price of each shopping cart item, price being formatted as US dollars and cents (e.g. $3.50, etc.)
 print("SELECTED PRODUCTS:") 
-for product_id in product_ids: 
-    matching_products = [x for x in products if str(x["id"]) == str(product_id)]
-    matching_product = matching_products[0]
+
+matching_products = []
+for product_id in product_ids:
+    matching_product = [x for x in products if str(x["id"]) == str(product_id)]
+    matching_product = matching_product[0]
+    matching_products.append(matching_product)
     subtotal_price = subtotal_price + matching_product["price"]
     print("...", matching_product["name"], "(" + str(to_usd(matching_product["price"]))+ ")")
 
@@ -134,14 +137,7 @@ while TRUE:
             "total_price": to_usd(total_price),
             "tday2": tday2.strftime("%Y-%m-%d %H:%M:%S"), 
             "matching_products":
-                [{'id': product['id'],'name':product['name'], 'price': product['price']} for product in matching_products]
-
-            #     {matching_products:1, "name": "Product 1"},
-            #     {product_id:2, "name": "Product 2"},
-            #     {product_id:3, "name": "Product 3"},
-            #     {product_id:2, "name": "Product 2"},
-            #     {product_id:1, "name": "Product 1"}
-            # ]
+                [{'name':matching_product['name'], 'price': to_usd(matching_product['price'])} for matching_product in matching_products]
        }
 
         client = SendGridAPIClient(SENDGRID_API_KEY)
