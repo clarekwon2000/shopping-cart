@@ -4,7 +4,7 @@ from ast import If
 import datetime
 from itertools import product
 from pickle import TRUE
-
+from time import strftime
 
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -102,21 +102,21 @@ print("TAX: " + (str(to_usd(tax))))
 print ("TOTAL:", to_usd(total_price))
 print("--------------")
 
-
-# A friendly message thanking the customer and/or encouraging the customer to shop again
-print("THANKS, SEE YOU AGAIN SOON!")
-print("--------------")
-
+########
 
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+import json
 
 #### EMAIL 
 
 while TRUE:
     user_receipt = input("Would you like to receive your receipt by email? [y/n]?")
     if user_receipt == "n" or product_id == "no" or product_id == "NO":
+        # A friendly message thanking the customer and/or encouraging the customer to shop again
+        print("THANKS, SEE YOU AGAIN SOON!")
+        print("--------------")
         break
     elif user_receipt == "y" or product_id == "yes" or product_id == "YES":
         load_dotenv()
@@ -126,26 +126,23 @@ while TRUE:
         SENDER_ADDRESS = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var called 'SENDER_ADDRESS'")
 
         # this must match the test data structure
-        # template_data = {
-        '''
-            print ("Total Price:", to_usd(total_price)),
-            print ("Receipt sent at:", tday2),
-            print ("Products:"),
-            print ("...", matching_product["name"], "(" + str(to_usd(matching_product["price"]))+ ")")
-        }
-        '''
 
+        print(tday2.strftime("%Y-%m-%d %H:%M:%S"))
+        
+        print(matching_products)
         template_data = {
-            "total": "$14.95",
-            "human_friendly_timestamp": "June 1st, 2019 10:00 AM",
-            "products":[
-            {"id":1, "name": "Product 1"},
-            {"id":2, "name": "Product 2"},
-            {"id":3, "name": "Product 3"},
-            {"id":2, "name": "Product 2"},
-            {"id":1, "name": "Product 1"}
-            ]
-        }
+            "total_price": to_usd(total_price),
+            "tday2": tday2.strftime("%Y-%m-%d %H:%M:%S"), 
+            "matching_products":
+                [{'id': product['id'],'name':product['name'], 'price': product['price']} for product in matching_products]
+
+            #     {matching_products:1, "name": "Product 1"},
+            #     {product_id:2, "name": "Product 2"},
+            #     {product_id:3, "name": "Product 3"},
+            #     {product_id:2, "name": "Product 2"},
+            #     {product_id:1, "name": "Product 1"}
+            # ]
+       }
 
         client = SendGridAPIClient(SENDGRID_API_KEY)
         print("CLIENT:", type(client))
@@ -165,5 +162,8 @@ while TRUE:
         except Exception as err:
             print(type(err))
             print(err)
+        break
     else:
         print ("INVAlID ID : PLEASE TRY AGAIN")
+
+        
