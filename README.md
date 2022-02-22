@@ -48,8 +48,7 @@ You can configure your own tax rate via an environment variable called `TAX_RATE
 TAX_RATE = 0.0875
 ```
 
-## For Access to Google Sheets
-
+For Access to Google Sheets: 
 ```sh
 # this is the .env file 
 `GOOGLE_SHEET_ID` = "1ItN7Cc2Yn4K90cMIsxi2P045Gzw0y2JHB_EkV4mXXpI"
