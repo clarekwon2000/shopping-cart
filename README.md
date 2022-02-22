@@ -30,14 +30,6 @@ You will need to write the following packages:
 # Basic Requirements 
 python-dotenv
 
-# Sendgrid Email Bonus Assignment 
-sendgrid
-
-# Google Sheet Bonus Assignment 
-json
-gspread oauth2client
-```
-
 Install the requirements: 
 
 ```sh
@@ -51,6 +43,7 @@ You must set up a local file named ".env" outside the root directory of the proj
 ```sh
 # this is the .env file 
 
+You can configure your own tax rate via an environment variable called TAX_RATE.
 # Tax Rate 
 TAX_RATE = 0.0875
 
@@ -64,6 +57,7 @@ SENDGRID_TEMPLATE_ID = d-4c7766bc749f40bbbeb2a80a25e6f980
 GOOGLE_SHEET_ID = "1ItN7Cc2Yn4K90cMIsxi2P045Gzw0y2JHB_EkV4mXXpI"
 SHEET_NAME = "Products-2021"
 ```
+
 NOTE: The ".env" file must be ignored from version control, by using a corresponding entry in the ".gitignore" file.
 
 ```sh
@@ -73,6 +67,23 @@ NOTE: The ".env" file must be ignored from version control, by using a correspon
 .env
 ```
 
+# Sending Receipts via Email 
+
+From within an active virtual environment, install the 'sendgrid' package:
+
+```sh
+pip install sendgrid
+
+# optionally install a specific version:
+#pip install sendgrid==6.6.0
+```
+
+# Google Sheet Bonus Assignment 
+
+```sh
+json
+gspread oauth2client
+```
 
 ## Usage 
 
