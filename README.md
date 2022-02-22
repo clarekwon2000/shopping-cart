@@ -27,7 +27,7 @@ Use a "requirements.txt" file approach to install your packages.
 You will need to write the following packages: 
 
 ```sh
-# Basic Requirements 
+# This is the 'requirements.txt' file
 python-dotenv
 ```
 
