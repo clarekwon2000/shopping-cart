@@ -48,6 +48,14 @@ You can configure your own tax rate via an environment variable called `TAX_RATE
 TAX_RATE = 0.0875
 ```
 
+## For Access to Google Sheets
+
+```sh
+# this is the .env file 
+`GOOGLE_SHEET_ID` = "1ItN7Cc2Yn4K90cMIsxi2P045Gzw0y2JHB_EkV4mXXpI"
+`SHEET_NAME` = "Products-2021"
+```
+
 NOTE: The ".env" file must be ignored from version control, by using a corresponding entry in the ".gitignore" file.
 
 ```sh
@@ -56,14 +64,6 @@ NOTE: The ".env" file must be ignored from version control, by using a correspon
 # ignore environment variables in the ".env" file:
 .env
 ```
-# For Access to Google Sheets
-
-```sh
-# this is the .env file 
-`GOOGLE_SHEET_ID` = "1ItN7Cc2Yn4K90cMIsxi2P045Gzw0y2JHB_EkV4mXXpI"
-`SHEET_NAME` = "Products-2021"
-```
-
 
 # Sending Receipts via Email 
 
