@@ -182,7 +182,7 @@ except Exception as err:
     print(err)
 ```
 
-Follow this [Sendgrid Package] (https://github.com/prof-rossetti/intro-to-python/blob/main/notes/python/packages/sendgrid.md) for better details.
+Follow this [Sendgrid Package](https://github.com/prof-rossetti/intro-to-python/blob/main/notes/python/packages/sendgrid.md) for better details.
 
 # Google Sheet Bonus Assignment 
 
