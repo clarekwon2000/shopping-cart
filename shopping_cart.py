@@ -31,9 +31,7 @@ rows = sheet.get_all_records()
 
 products = rows = sheet.get_all_records()
 
-from ast import If
 import datetime
-from itertools import product
 from pickle import TRUE
 from time import strftime
 
@@ -194,5 +192,3 @@ while TRUE:
         break
     else:
         print ("INVAlID ID : PLEASE TRY AGAIN")
-
-
