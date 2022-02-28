@@ -192,6 +192,8 @@ First install the package (and a dependent auth-related package) using Pip, if n
 pip install gspread oauth2client
 ```
 
+Follow this [gsspread](https://github.com/prof-rossetti/intro-to-python/blob/main/notes/python/packages/gspread.md#the-gspread-package) package for further details.
+
 NOTE: you'll need to download a google credentials JSON file into your repo, but this file must ABSOLUTELY be ignored from version control. HINT: you can use an entry like the following in your ".gitignore" file:
 
 ```sh
